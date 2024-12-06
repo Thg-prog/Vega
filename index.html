@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор с регистрами</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+  <div class="calculator">
+    <div class="display">
+      <!-- Поле для отображения выражения -->
+      <div id="expression-display">0</div>
+      <div id="status-display"></div>
+    </div>
+    <div class="buttons">
+      <!-- Первая строка -->
+      
+      <button class="seven" onclick="appendNumber(7)"></button>
+      <button class="eight" onclick="appendNumber(8)"></button>
+      <button class="nine" onclick="appendNumber(9)"></button>
+      <button class="MK" onclick="transferMultiplierToKeyboard()"></button>
+      <button class="MC" onclick="transferMultiplierToAccumulator()"></button>
+
+      <!-- Вторая строка -->
+      <button class="unaryMinus" onclick="negateCurrentInput()"></button>
+      <button class="four" onclick="appendNumber(4)"></button>
+      <button class="five" onclick="appendNumber(5)"></button>
+      <button class="six" onclick="appendNumber(6)"></button>
+      <button class="CK" onclick="transferAccumulatorToKeyboard()"></button>
+      <button class="multi" onclick="chooseOperation('*')"></button>
+
+      <!-- Третья строка -->
+      <button class="CD" onclick="handleCDOperation()"></button>
+      <button class="triangleC" onclick="outputAccumulator()"></button>
+      <button class="one" onclick="appendNumber(1)"></button>
+      <button class="two" onclick="appendNumber(2)"></button>
+      <button class="three" onclick="appendNumber(3)"></button>
+      <button class="KM" onclick="transferKeyboardToMultiplier()"></button>
+
+      <!-- Четвертая строка -->
+      <button class="PD" onclick="convertNumberToBase()"></button>
+      <button class="triangleK" onclick="outputKeyboard()"></button>
+      <button class="zero" onclick="appendNumber(0)"></button>
+      <button class="doubleZero" onclick="appendDoubleZero()"></button>
+      <button class="tripleZero" onclick="appendTripleZero()"></button>
+      <button class="operators minus" onclick="chooseOperation('-')"></button>
+      <button class="operators plus"onclick="chooseOperation('+')"></button>
+      <button class=" operators division" onclick="chooseOperation('/')"></button>
+
+      <!-- Пятая строка -->
+      <button class="sqrt" onclick="sqrt()"></button>
+      <button class="PC" onclick="clearAllRegisters()"></button>
+    
+      <button class="dot" onclick="addDot()"></button>
+      <button class ="CC" onclick="clearAccumulator()"></button>
+
+      <slider-container>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider"></span>
+        </label>
+      </slider-container>
+      
+    </div>
+    
+    <!-- Поле для отображения регистра клавиатуры и сумматора под калькулятором -->
+    <div class="registers">
+      <div class="text_color" id="keyboard-display">К: 0</div>
+      <div class="text_color" id="accumulator-display">С: 0</div>
+      <div class="text_color" id="multiplier-display">М: 0</div>
+    </div>
+
+    
+  </div>
+  <div class="command-descriptions">
+    <h2>Описание команд</h2>
+    <ul>
+      <li><strong>MK:</strong> Перенос множителя в регистр клавиатуры.</li>
+      <li><strong>KМ:</strong> Перенос клавиатуры в регистр множителя.</li>
+      <li><strong>MC:</strong> Перенос множителя в регистр сумматора.</li>
+      <li><strong>ПД:</strong> Перевод дробного числа в другую систему счисления.(система счисления от 2 до 10)В регистре множителя основание системы счисления в регистре клавиатуры число для перевода</li>
+      <li><strong>PC:</strong> Очистка всех регистров.</li>
+      <li><strong>CC:</strong> Очистка регистра сумматора.</li>
+      <li><strong>CК:</strong> Очистка регистра клавиатуры.</li>
+      <li><strong>△C:</strong> Вывод регистра сумматора.</li>
+      <li><strong>△К:</strong> Вывод регистра клавиатуры.</li>
+      <li><strong>1-1:</strong> Кнопка отрицательного числа.(меняет значение введенного числа с положительнонго на отрицательное)</li>
+      <li><strong>÷Ц:</strong> Целочисленное деление(регистр суммы делится на регистр клавиатуры). В зависимости от положения тумблера либо остаток либо частное</li>
+      <li><strong>√:</strong> Квадратный корень.Берет корень от числа в регистре клавиатуры. В итоге в регистре клавиатуры 2 в сумматоре результат и в множителе исходное </li>
+      <li><strong>△К:</strong> Вывод регистра клавиатуры.</li>
+      <li><strong>x:</strong> Умножает регистр клавиатуры на регистр множителя, результат в регистр сумматора.</li>
+      <li><strong>÷:</strong> Делит регистр сумматора на регистр клавиатуры результат в регистре сумматора.</li>
+      <li><strong>-:</strong> Вычитает из регистра сумматора число из регистра клавиатуры.</li>
+      <li><strong>+:</strong> Добавляет в регистр сумматора число из регистра клавиатуры.</li>
+    </ul>
+  </div>
+  </div>
+  
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.3.1/decimal.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
