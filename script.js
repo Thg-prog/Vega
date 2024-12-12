@@ -7,12 +7,14 @@ let expression = ''; // Строка для отображения выраже�
 let signalPFlag = false; // Флаг для сигнала П
 let signalZFlag = false; // Флаг для сигнала З
 let isTypingSecondNumber = false; // Флаг для проверки, вводится ли второе число
+let isNegative = false;
 let isFirst = true;
 let flagZ=false;
 const maxNumber= Decimal.pow(10,35)
 let conversionResult = ""; // Строка для хранения результата конвертации
 let currentIndex = 0; // Индекс текущего символа для вывода
 Decimal.set({toExpNeg:-100, toExpPos: 100});
+document.getElementById('expression-display').innerHTML = '<span>0</span>';
 
 const slider = document.querySelector('slider-container .switch input[type="checkbox"]');
 // Обновление дисплеев
@@ -61,6 +63,13 @@ function updateDisplays() {
       document.getElementById('expression-display').innerText = displayValue;
     }else{
       document.getElementById('expression-display').innerText = displayValueString;
+      // const disp = document.getElementById('expression-display');
+      // disp.innerHTML = '';
+      // displayValueString.split('').forEach(char=>{
+      //   const span = document.createElement('span');
+      //   span.textContent = char;
+      //   disp.appendChild(span);
+      // })
       document.getElementById("status-display").innerText = "";
     }
   }else{
@@ -224,7 +233,11 @@ function appendNumber(num) {
       } else {
         currentInput = num.toString();
       }
+      if(!isNegative){
       keyboardRegister = new Decimal(currentInput);
+      }else{
+        keyboardRegister = new Decimal("-"+currentInput)
+      }
       isTypingSecondNumber = true;
       expression = currentInput;
       updateDisplays();
@@ -309,8 +322,9 @@ function clearAccumulator() {
 function negateCurrentInput() {
   if(!flagZ){
    if (isTypingSecondNumber) {
+     isNegative = true;
      currentInput = keyboardRegister.toString(); // Обновляем текущее значение для отображения
-     keyboardRegister = -keyboardRegister; // Меняем знак текущего значения
+     keyboardRegister = keyboardRegister.negated() // Меняем знак текущего значения
      updateDisplays();
    }
   }
@@ -329,6 +343,7 @@ function makeResOutput(){
 // Выбор операции
 function chooseOperation(op) {
   if(!flagZ){
+    isNegative = false;
    isFirst = true;
    conversionResult = ""; // Строка для хранения результата конвертации
    currentIndex = 0; // Индекс текущего символа для вывода
@@ -361,7 +376,7 @@ function clearAllRegisters() {
   accumulator = new Decimal(0);
   keyboardRegister = new Decimal(0);
   multiplierRegister = new Decimal(0);
-  currentInput = '';
+  currentInput = '0';
   isFirst = true;
   conversionResult = ""; // Строка для хранения результата конвертации
   currentIndex = 0; // Индекс текущего символа для вывода
@@ -371,6 +386,7 @@ function clearAllRegisters() {
   signalZFlag = false;
   isTypingSecondNumber = false;
   updateDisplays();
+  outputAccumulator()
 }
 
 // Операция извлечения квадратного корня
@@ -490,6 +506,6 @@ document.addEventListener('keydown', function(event) {
     }
   }
 });
-
+outputAccumulator();
 // Инициализация
 updateDisplays();
