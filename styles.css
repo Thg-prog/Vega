@@ -57,7 +57,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 780px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/VEGA2.jpg);
+  background-image: url(images/VEGA2.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -71,7 +71,7 @@ body {
   width:550px;
   height:150px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/display.jpg);
+  background-image: url(images/display.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -125,7 +125,7 @@ button {
   width:45px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/seven.jpg);
+  background-image: url(images/seven.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -139,7 +139,7 @@ button {
   width:45px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/eight.jpg);
+  background-image: url(images/eight.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -153,7 +153,7 @@ button {
   width:45px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/nine.jpg);
+  background-image: url(images/nine.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -165,7 +165,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/MK.jpg);
+  background-image: url(images/MK.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -177,7 +177,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/MC.jpg);
+  background-image: url(images/MC.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -190,7 +190,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/unaryMinus.jpg);
+  background-image: url(images/unaryMinus.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -204,7 +204,7 @@ button {
   width:45px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/four.jpg);
+  background-image: url(images/four.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -218,7 +218,7 @@ button {
   width:45px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/five.jpg);
+  background-image: url(images/five.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -232,7 +232,7 @@ button {
   width:45px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/six.jpg);
+  background-image: url(images/six.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -244,7 +244,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/CK.jpg);
+  background-image: url(images/CK.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -256,7 +256,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/DC.jpg);
+  background-image: url(images/DC.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -268,7 +268,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/trC.jpg);
+  background-image: url(images/trC.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -282,7 +282,7 @@ button {
   height:47px;
   width:45px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/one.jpg);
+  background-image: url(images/one.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -296,7 +296,7 @@ button {
   width:45px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/two.jpg);
+  background-image: url(images/two.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -310,7 +310,7 @@ button {
   width:45px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/three.jpg);
+  background-image: url(images/three.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -322,7 +322,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/KM.jpg);
+  background-image: url(images/KM.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -334,7 +334,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/PD.jpg);
+  background-image: url(images/PD.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -346,7 +346,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/trK.jpg);
+  background-image: url(images/trK.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -358,7 +358,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/zero.jpg);
+  background-image: url(images/zero.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -370,7 +370,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/doubleZero.jpg);
+  background-image: url(images/doubleZero.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -382,7 +382,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/tripleZero.jpg);
+  background-image: url(images/tripleZero.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -394,7 +394,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/sqrt.jpg);
+  background-image: url(images/sqrt.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -406,7 +406,7 @@ button {
   width:73px;
   height:47px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/PC.jpg);
+  background-image: url(images/PC.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -418,7 +418,7 @@ button {
   width:70px;
   height:130px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/CC.jpg);
+  background-image: url(images/CC.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -430,7 +430,7 @@ button {
   width:75px;
   height:130px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/multi.jpg);
+  background-image: url(images/multi.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -441,7 +441,7 @@ button {
   width:70px;
   height:130px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/division.jpg);
+  background-image: url(images/division.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -456,7 +456,7 @@ button {
   width:75px;
   height:130px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/plus.jpg);
+  background-image: url(images/plus.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -467,7 +467,7 @@ button {
   width:75px;
   height:130px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/minus.jpg);
+  background-image: url(images/minus.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
@@ -479,7 +479,7 @@ button {
   width:245px;
   height:55px;
   border: none;
-  background-image: url(/Users/anton/Desktop/kursachi/kozlov2/images/dot.jpg);
+  background-image: url(images/dot.jpg);
   background-size:auto;
   background-position: center;
   background-repeat: none;
