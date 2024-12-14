@@ -85,21 +85,22 @@ body {
   
   font-size: 28px;
   margin-top: 65px;
-  margin-left: 53px;
-  width:390px;
+  margin-left: 35px;
+  width:415px;
   height: 35px;
   color: white;
   text-align: justify;
   display: grid;
   
   grid-template-columns: repeat(20,1fr);
+  column-gap: 1px;
   background-color: rgb(158,156,141);
 }
 #expression-display span{
   width:20px;
   height: 20px;
   display: inline-block;
-  text-align: center;
+  text-align: left;
 }
 #status-display {
   font-family: MOSCOW2024;

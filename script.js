@@ -28,31 +28,36 @@ function updateDisplays() {
   if (displayValueString.includes(".")) {
     [integerPart, fractionalPart] = displayValueString.split(".");
   }
-  if(expression>=0 && keyboardRegister>=0){
+  if(expression>=0 && keyboardRegister.gte(0)){
     let displayValue = new Decimal(expression || keyboardRegister|| '0');
     // Проверяем длину числа
     if(displayValue.gte(maxNumber)){
-      displayValue = displayValue.toString().slice(0, 20);
+      displayValueString = displayValue.toString().slice(0, 20);
+
       document.getElementById("status-display").innerText = "  Е"; // Указываем переполнение
       document.getElementById('expression-display').innerText = displayValue;
       flagZ = true;
     }else if(displayValue.toString().length == 21 && displayValue.toString().includes(".")){
-      document.getElementById('expression-display').innerText = displayValue;
+      //document.getElementById('expression-display').innerText = displayValue;
+      updateExpDisp(displayValueString);
       document.getElementById("status-display").innerText = ""; 
     }else if(displayValue.toString().length > 21 && displayValue.toString().includes(".")){
       displayValue = displayValue.toString().slice(0, 21);
       document.getElementById("status-display").innerText = " П "; // Указываем переполнение
-      document.getElementById('expression-display').innerText = displayValue;
+      //document.getElementById('expression-display').innerText = displayValue;
+      updateExpDisp(displayValue);
       accumulator=new Decimal(displayValue);
       document.getElementById('accumulator-display').innerText = `С: ${accumulator}`;
     }else if(displayValueString.includes(".")&&displayValueString.length>2){
       if (fractionalPart.length>20){
         displayValue = displayValue.toString().slice(0, 20);
         document.getElementById("status-display").innerText = "  Е"; // Указываем переполнение
-        document.getElementById('expression-display').innerText = displayValue;
+        //document.getElementById('expression-display').innerText = displayValue;
+        upupdateExpDisp(displayValue);
         flagZ = true;
       }else{
         document.getElementById('expression-display').innerText = displayValueString;
+        updateExpDisp(displayValueString);
       }
     }else if (displayValue.toString().length > 20 ) {
       // Обрезаем до 20 разрядов
@@ -60,9 +65,9 @@ function updateDisplays() {
       document.getElementById("status-display").innerText = " П "; // Указываем переполнение
       accumulator=new Decimal(displayValue);
       document.getElementById('accumulator-display').innerText = `С: ${accumulator}`;
-      document.getElementById('expression-display').innerText = displayValue;
+      updateExpDisp(displayValue);
     }else{
-      document.getElementById('expression-display').innerText = displayValueString;
+      updateExpDisp(displayValueString);
       // const disp = document.getElementById('expression-display');
       // disp.innerHTML = '';
       // displayValueString.split('').forEach(char=>{
@@ -70,6 +75,7 @@ function updateDisplays() {
       //   span.textContent = char;
       //   disp.appendChild(span);
       // })
+
       document.getElementById("status-display").innerText = "";
     }
   }else{
@@ -78,23 +84,24 @@ function updateDisplays() {
     if(displayValue.gte(maxNumber)){
       displayValue = displayValue.toString().slice(0, 20);
       document.getElementById("status-display").innerText = "- Е"; // Указываем переполнение
-      document.getElementById('expression-display').innerText = displayValue;
+      updateExpDisp(displayValue);
       flagZ = true;
     }else if(displayValue.toString().length == 21 && displayValue.toString().includes(".")){
-      document.getElementById('expression-display').innerText = displayValue;
-      document.getElementById("status-display").innerText = ""; 
+      displayValue = displayValue.toString();
+      updateExpDisp();
+      document.getElementById("status-display").innerText = "-   "; 
     }else if(displayValue.toString().length > 21 && displayValue.toString().includes(".")){
       displayValue = displayValue.toString().slice(0, 21);
       document.getElementById("status-display").innerText = "-П "; // Указываем переполнение
       accumulator=new Decimal(displayValue);
       accumulator=accumulator.negated();
       document.getElementById('accumulator-display').innerText = `С: ${accumulator}`;
-      document.getElementById('expression-display').innerText = displayValue;
+      updateExpDisp(displayValue);
     }else if(displayValueString.includes(".")){
       if (fractionalPart.length>20){
         displayValue = displayValue.toString().slice(0, 20);
         document.getElementById("status-display").innerText = "- Е"; // Указываем переполнение
-        document.getElementById('expression-display').innerText = displayValue;
+        updateExpDisp(displayValue);
         flagZ = true;
       }
     }else if (displayValue.toString().length > 20 ) {
@@ -104,9 +111,10 @@ function updateDisplays() {
       accumulator=new Decimal(displayValue);
       accumulator=accumulator.negated();
       document.getElementById('accumulator-display').innerText = `С: ${accumulator}`;
-      document.getElementById('expression-display').innerText = displayValue;
+      updateExpDisp(displayValue);
     }else{
-      document.getElementById('expression-display').innerText = displayValue;
+      displayValue = displayValue.toString();
+      updateExpDisp(displayValue);
       document.getElementById("status-display").innerText = "-  "; // Указываем переполнение
     }
   }
@@ -144,6 +152,46 @@ function handleCDOperation() {
     // Обновляем дисплеи
     updateDisplays();
   }
+}
+
+function updateExpDisp(displayValueString){
+  const disp = document.getElementById('expression-display');
+  
+
+  disp.innerHTML = ''; // Очистить текущее содержимое
+
+  // Массив для хранения разделённых элементов (число+точка как единый элемент)
+  const elements = [];
+  let buffer = ''; // Временное хранилище для числа с точкой
+
+  for (let i = 0; i < displayValueString.length; i++) {
+    const char = displayValueString[i];
+
+    if (char === '.') {
+      // Если точка, объединяем её с предыдущим числом
+      buffer += char;
+    } else {
+      // Если символ — это число или оператор
+      if (buffer) {
+        // Добавляем содержимое buffer в элементы
+        elements.push(buffer);
+        buffer = '';
+      }
+      buffer += char;
+    }
+  }
+
+  // Добавляем оставшийся buffer
+  if (buffer) {
+    elements.push(buffer);
+  }
+
+  // Вставляем элементы в DOM
+  elements.forEach(element => {
+    const span = document.createElement('span');
+    span.textContent = element;
+    disp.appendChild(span);
+  });
 }
 
 
@@ -324,7 +372,7 @@ function negateCurrentInput() {
    if (isTypingSecondNumber) {
      isNegative = true;
      currentInput = keyboardRegister.toString(); // Обновляем текущее значение для отображения
-     keyboardRegister = keyboardRegister.negated() // Меняем знак текущего значения
+     keyboardRegister = new Decimal(keyboardRegister).negated() // Меняем знак текущего значения
      updateDisplays();
    }
   }
