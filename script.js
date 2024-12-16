@@ -300,7 +300,7 @@ function appendDoubleZero(){
     currentIndex = 0; // Индекс текущего символа для вывода
     if((currentInput.length+2<=20)||(currentInput.length+3==21 && currentInput.includes("."))){
       currentInput += "00";
-      keyboardRegister=new Decimal(currentInput);
+      keyboardRegister=keyboardRegister.mul(100);
       isTypingSecondNumber = true;
       expression = currentInput;
       updateDisplays();
@@ -315,7 +315,7 @@ function appendTripleZero(){
     currentIndex = 0; // Индекс текущего символа для вывода
     if((currentInput.length+3<=20)||(currentInput.length+4==21 && currentInput.includes("."))){
       currentInput += "000";
-      keyboardRegister=new Decimal(currentInput);
+      keyboardRegister=keyboardRegister.mul(1000);
       isTypingSecondNumber = true;
       expression = currentInput;
       updateDisplays();
