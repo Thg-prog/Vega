@@ -44,7 +44,8 @@ function updateDisplays() {
       updateExpDisp(displayValueString);
       document.getElementById("status-display").innerText = ""; 
     }else if((displayValue.toNumber().toString()).length > 21 && displayValue.toString().includes(".") || currentIndex>=22){
-      displayValue = displayValue.toString().slice(0, 21);
+      displayValue = expression.toString().slice(0, 21);
+      //displayValue = displayValue.toString().slice(0, 21);
       document.getElementById("status-display").innerText = " П "; // Указываем переполнение
       //document.getElementById('expression-display').innerText = displayValue;
       updateExpDisp(displayValue);
@@ -93,7 +94,7 @@ function updateDisplays() {
       updateExpDisp(displayValue);
       document.getElementById("status-display").innerText = "-   "; 
     }else if(displayValue.toString().length > 21 && displayValue.toString().includes(".")){
-      displayValue = displayValue.toString().slice(0, 21);
+      displayValue = expression.toString().slice(0, 21);
       document.getElementById("status-display").innerText = "-П "; // Указываем переполнение
       accumulator=new Decimal(displayValue);
       accumulator=accumulator.negated();
@@ -268,22 +269,10 @@ function convertNumberToBase() {
       alert("Все разряды уже рассчитаны.");
       conversionResult = ""; // Строка для хранения результата конвертации
       currentIndex = 0; // Индекс текущего символа для вывода
-      expression = expression.toString().slice(0, 21);
+      return;
     }
-    if(currentIndex>=22){
-      let displayValue = expression.toString().slice(0, 21);
-      if(keyboardRegister.gte(0)){
-        document.getElementById("status-display").innerText = " П "; // Указываем переполнение
-      }else{
-        document.getElementById("status-display").innerText = "-П "; // Указываем переполнение
-      }
-      //document.getElementById('expression-display').innerText = displayValue;
-      updateExpDisp(displayValue);
-      accumulator=new Decimal(displayValue);
-      document.getElementById('accumulator-display').innerText = `С: ${accumulator}`;
-    }else{
+    
       updateDisplays();
-    }
   }
 }
 
