@@ -9,6 +9,7 @@ let signalZFlag = false; // Флаг для сигнала З
 let isTypingSecondNumber = false; // Флаг для проверки, вводится ли второе число
 let isNegative = false;
 let isFirst = true;
+let isDot = false;
 let flagZ=false;
 const maxNumber= Decimal.pow(10,35)
 let conversionResult = ""; // Строка для хранения результата конвертации
@@ -29,7 +30,8 @@ function updateDisplays() {
     [integerPart, fractionalPart] = displayValueString.split(".");
   }
   if(expression>=0 && keyboardRegister.gte(0)){
-    let displayValue = new Decimal(expression || keyboardRegister|| '0');
+    let displayValue = new Decimal(expression);
+    let lnnnn = displayValue.toString().length;
     // Проверяем длину числа
     if(displayValue.gte(maxNumber)){
       displayValueString = displayValue.toString().slice(0, 20);
@@ -41,7 +43,7 @@ function updateDisplays() {
       //document.getElementById('expression-display').innerText = displayValue;
       updateExpDisp(displayValueString);
       document.getElementById("status-display").innerText = ""; 
-    }else if(displayValue.toString().length > 21 && displayValue.toString().includes(".")){
+    }else if((displayValue.toNumber().toString()).length > 21 && displayValue.toString().includes(".") || currentIndex>=22){
       displayValue = displayValue.toString().slice(0, 21);
       document.getElementById("status-display").innerText = " П "; // Указываем переполнение
       //document.getElementById('expression-display').innerText = displayValue;
@@ -88,7 +90,7 @@ function updateDisplays() {
       flagZ = true;
     }else if(displayValue.toString().length == 21 && displayValue.toString().includes(".")){
       displayValue = displayValue.toString();
-      updateExpDisp();
+      updateExpDisp(displayValue);
       document.getElementById("status-display").innerText = "-   "; 
     }else if(displayValue.toString().length > 21 && displayValue.toString().includes(".")){
       displayValue = displayValue.toString().slice(0, 21);
@@ -103,6 +105,10 @@ function updateDisplays() {
         document.getElementById("status-display").innerText = "- Е"; // Указываем переполнение
         updateExpDisp(displayValue);
         flagZ = true;
+      }else{
+        displayValue = displayValue.toString();
+        document.getElementById("status-display").innerText = "-  "; // Указываем переполнение
+        updateExpDisp(displayValue);
       }
     }else if (displayValue.toString().length > 20 ) {
       // Обрезаем до 20 разрядов
@@ -200,8 +206,7 @@ function convertNumberToBase() {
     const base = multiplierRegister.toNumber(); // Основание системы счисления
     let n1 = new Decimal(keyboardRegister)
     let number = n1.toNumber(); // Исходное число
-
-    if (isNaN(number) || isNaN(base) || base <= 1 || base > 10 || !keyboardRegister.toString().includes(".")) {
+    if (isNaN(number) || isNaN(base) || base <= 1 || base > 10 || !isDot) {
       alert("Введите корректное число и основание системы счисления (>1).");
       return;
     }
@@ -223,7 +228,7 @@ function convertNumberToBase() {
       }
 
       // Добавляем точку для дробной части, если она есть
-      if (currentFraction.toNumber() > 0) {
+      if (currentFraction.toNumber() >= 0) {
         result += "."; // Точка перед дробной частью
       }
 
@@ -263,9 +268,22 @@ function convertNumberToBase() {
       alert("Все разряды уже рассчитаны.");
       conversionResult = ""; // Строка для хранения результата конвертации
       currentIndex = 0; // Индекс текущего символа для вывода
+      expression = expression.toString().slice(0, 21);
     }
-
-    updateDisplays();
+    if(currentIndex>=22){
+      let displayValue = expression.toString().slice(0, 21);
+      if(keyboardRegister.gte(0)){
+        document.getElementById("status-display").innerText = " П "; // Указываем переполнение
+      }else{
+        document.getElementById("status-display").innerText = "-П "; // Указываем переполнение
+      }
+      //document.getElementById('expression-display').innerText = displayValue;
+      updateExpDisp(displayValue);
+      accumulator=new Decimal(displayValue);
+      document.getElementById('accumulator-display').innerText = `С: ${accumulator}`;
+    }else{
+      updateDisplays();
+    }
   }
 }
 
@@ -276,7 +294,7 @@ function appendNumber(num) {
     conversionResult = ""; // Строка для хранения результата конвертации
     currentIndex = 0; // Индекс текущего символа для вывода
     if ((currentInput.length + 1 <= 20) || (currentInput.length + 1 == 21 && currentInput.includes("."))) {
-      if (!(parseInt(currentInput) === 0)) {
+      if (!(currentInput == "0")) {
         currentInput += num.toString();
       } else {
         currentInput = num.toString();
@@ -300,7 +318,7 @@ function appendDoubleZero(){
     currentIndex = 0; // Индекс текущего символа для вывода
     if((currentInput.length+2<=20)||(currentInput.length+3==21 && currentInput.includes("."))){
       currentInput += "00";
-      keyboardRegister=keyboardRegister.mul(100);
+      keyboardRegister=new Decimal(currentInput);
       isTypingSecondNumber = true;
       expression = currentInput;
       updateDisplays();
@@ -315,7 +333,7 @@ function appendTripleZero(){
     currentIndex = 0; // Индекс текущего символа для вывода
     if((currentInput.length+3<=20)||(currentInput.length+4==21 && currentInput.includes("."))){
       currentInput += "000";
-      keyboardRegister=keyboardRegister.mul(1000);
+      keyboardRegister=new Decimal(currentInput);
       isTypingSecondNumber = true;
       expression = currentInput;
       updateDisplays();
@@ -330,7 +348,12 @@ function addDot() {
     currentIndex = 0; // Индекс текущего символа для вывода
     if (!currentInput.includes('.')) {
         currentInput += '.';
-        keyboardRegister = new Decimal(currentInput.toString());
+        if(keyboardRegister.gte(0)){
+          keyboardRegister = new Decimal(currentInput.toString());
+        }else{
+          keyboardRegister = new Decimal("-"+currentInput.toString());
+        }
+        isDot = true;
         expression = currentInput;
         updateDisplays();
     }
