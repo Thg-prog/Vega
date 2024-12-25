@@ -266,7 +266,6 @@ function convertNumberToBase() {
       }
       currentIndex++; // Увеличиваем индекс для следующего символа
     } else {
-      alert("Все разряды уже рассчитаны.");
       conversionResult = ""; // Строка для хранения результата конвертации
       currentIndex = 0; // Индекс текущего символа для вывода
       return;
