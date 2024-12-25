@@ -352,6 +352,7 @@ function addDot() {
 // Сброс текущего ввода
 function clearKeyboard() {
   if(!flagZ){
+    isNegated=false;
     isFirst = true;
     conversionResult = ""; // Строка для хранения результата конвертации
     currentIndex = 0; // Индекс текущего символа для вывода
@@ -366,6 +367,7 @@ function clearKeyboard() {
 function clearAccumulator() {
   if(!flagZ){
     isFirst = true;
+    isNegated=false;
     conversionResult = ""; // Строка для хранения результата конвертации
     currentIndex = 0; // Индекс текущего символа для вывода
     accumulator = new Decimal(0);
@@ -444,6 +446,7 @@ function clearAllRegisters() {
   expression = '';
   signalPFlag = false;
   signalZFlag = false;
+  isNegated = false;
   isTypingSecondNumber = false;
   updateDisplays();
   outputAccumulator()
