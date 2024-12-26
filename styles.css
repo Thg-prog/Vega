@@ -97,9 +97,10 @@ body {
   background-color: rgb(158,156,141);
 }
 #expression-display span{
-  width:20px;
+  width:auto;
   height: 20px;
   display: inline-block;
+  row-gap: 3px;
   text-align: left;
 }
 #status-display {

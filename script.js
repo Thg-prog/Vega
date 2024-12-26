@@ -8,6 +8,7 @@ let signalPFlag = false; // Флаг для сигнала П
 let signalZFlag = false; // Флаг для сигнала З
 let isTypingSecondNumber = false; // Флаг для проверки, вводится ли второе число
 let isNegative = false;
+let prevConv = new Decimal(0);
 let isFirst = true;
 let isDot = false;
 let flagZ=false;
@@ -213,7 +214,8 @@ function convertNumberToBase() {
     }
 
     // Инициализация при первом вызове
-    if (conversionResult === "") {
+    if (conversionResult === "" && (!n1.eq(prevConv))) {
+      prevConv =new Decimal(n1);
       const isNegative = number < 0; // Проверяем, отрицательное ли число
       number = Math.abs(number); // Работаем с модулем числаь
 
@@ -268,6 +270,7 @@ function convertNumberToBase() {
     } else {
       conversionResult = ""; // Строка для хранения результата конвертации
       currentIndex = 0; // Индекс текущего символа для вывода
+      outputAccumulator();
       return;
     }
     
@@ -517,7 +520,7 @@ function transferAccumulatorToKeyboard() {
 function outputAccumulator() {
   if(!flagZ){
     currentInput = accumulator.toString();
-    keyboardRegister = accumulator;
+   // keyboardRegister = accumulator;
     expression = currentInput;
     isFirst = true;
     conversionResult = ""; // Строка для хранения результата конвертации
