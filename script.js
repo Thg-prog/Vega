@@ -366,7 +366,7 @@ function clearKeyboard() {
 function clearAccumulator() {
   if(!flagZ){
     isFirst = true;
-    isNegated=false;
+    isNegative=false;
     conversionResult = ""; // Строка для хранения результата конвертации
     currentIndex = 0; // Индекс текущего символа для вывода
     accumulator = new Decimal(0);
@@ -445,10 +445,10 @@ function clearAllRegisters() {
   expression = '';
   signalPFlag = false;
   signalZFlag = false;
-  isNegated = false;
+  isNegative = false;
   isTypingSecondNumber = false;
-  updateDisplays();
-  outputAccumulator()
+  
+  outputKeyboard();
 }
 
 // Операция извлечения квадратного корня
