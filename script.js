@@ -270,11 +270,23 @@ function convertNumberToBase() {
     } else {
       conversionResult = ""; // Строка для хранения результата конвертации
       currentIndex = 0; // Индекс текущего символа для вывода
-      outputAccumulator();
+      outputExpression(expression);
       return;
     }
     
       updateDisplays();
+  }
+}
+
+function outputExpression(expression1) {
+  if(!flagZ){
+    currentInput = expression1;
+   // keyboardRegister = accumulator;
+    expression = currentInput;
+    isFirst = true;
+    conversionResult = ""; // Строка для хранения результата конвертации
+    currentIndex = 0; // Индекс текущего символа для вывода
+    updateDisplays();
   }
 }
 
