@@ -133,10 +133,10 @@ function handleCDOperation() {
     isFirst = true;
     conversionResult = ""; // Строка для хранения результата конвертации
     currentIndex = 0; // Индекс текущего символа для вывода
-    // Проверяем состояние слайдера
+    // Проверяем состояние слайдера 
     const isFractionMode = slider.checked; // Если слайдер включен, работаем с целой частью
-    let dividend = accumulator.toNumber(); // Делимое (число в регистре сумматора)
-    let divisor = keyboardRegister.toNumber(); // Делитель (число в регистре клавиатуры)
+    let dividend = new Decimal(accumulator.toNumber()); // Делимое (число в регистре сумматора)
+    let divisor = new Decimal(keyboardRegister.toNumber()); // Делитель (число в регистре клавиатуры)
 
 
     if (isNaN(dividend) || isNaN(divisor) || divisor === 0) {
@@ -145,13 +145,15 @@ function handleCDOperation() {
     }
 
     // Выполняем деление
-    const result = new Decimal(dividend).dividedBy(divisor);
+    
 
     if (!isFractionMode) {
+      let result = new Decimal(Decimal(dividend).dividedBy(divisor));
       // Режим дробной части: оставляем только дробную часть результата
-      accumulator = new Decimal(result.minus(result.floor()).toString().replace(".", "").replace("0",""));
-      expression = accumulator.toString().replace(".", "").replace("0","");
+      accumulator = new Decimal(dividend.minus(divisor.mul(result.floor())).toString().replace(".", "").replace("0",""));
+      expression = dividend.minus(divisor.mul(result.floor())).toString().replace(".", "").replace("0","");
     } else {
+      let result = new Decimal(Decimal(dividend).dividedBy(divisor));
       // Режим целой части: оставляем только целую часть результата
       accumulator = result.floor();
       expression = accumulator.toString();
